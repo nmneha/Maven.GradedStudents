@@ -82,9 +82,8 @@ public class Classroom {
                 }
 
             }
-            return students;
-
         }
+        return students;
     }
     //public Student[] getStudentByScore() {
     //List <Student> studentSortedList = Arrays.asList(students);
@@ -94,21 +93,25 @@ public class Classroom {
     //                  .thenComparing(s -> s.getFirstName());
     //Collections.sort(studentSortedList, comparator);
     //return studentSortedList.toArray(new Student[students.length]);
+    //change code, does not work with null
 
-    public Map<String, Student> getGradeBook() {
-        HashMap<String, Student> gradebook = new HashMap<>();
+    public Map<Student, String> getGradeBook() {
+        Double percentile;
+        Student[] sortedClass = this.getStudentsByScore();
+        Map<Student, String> gradebook = new HashMap<>();
+        int count = getStudentsByScore().length;
         for (int i = 0; i < students.length; i++) {
-            double percentile = students[i].getAverageExamScore() / getAverageExamScores();
-            if (percentile > .9) {
-                gradebook.put("A", students[i]);
-            } else if (percentile > .71 && percentile < .9) {
-                gradebook.put("B", students[i]);
-            } else if (percentile > .50 && percentile < .71) {
-                gradebook.put("C", students[i]);
-            } else if (percentile > .11 && percentile < .50) {
-                gradebook.put("D", students[i]);
+           percentile = ((count-i-1.0/(count)));
+            if (percentile >= .9) {
+                gradebook.put(sortedClass[i], "A");
+            } else if (percentile >= .71 && percentile < .9) {
+                gradebook.put(sortedClass[i], "B");
+            } else if (percentile >= .50 && percentile < .71) {
+                gradebook.put(sortedClass[i], "C");
+            } else if (percentile >= .11 && percentile < .50) {
+                gradebook.put(sortedClass[i], "D");
             } else if (percentile < .11) {
-                gradebook.put("F", students[i]);
+                gradebook.put(sortedClass[i], "F");
             }
         }
 
