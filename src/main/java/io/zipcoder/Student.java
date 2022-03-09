@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Student {
-    public String firstName;
-    public String lastName;
-    public ArrayList<Double> examScores;
+    private String firstName;
+    private String lastName;
+    private ArrayList<Double> examScores;
 
     public Student(String firstName, String lastName, Double[] examScores) {
         this.firstName = firstName;
@@ -54,8 +54,8 @@ public class Student {
          examScores.set(examNumber-1, newScore);
     }
 
-    public Integer getAverageExamScore() {
-        int sum = 0;
+    public Double getAverageExamScore() {
+        double sum = 0;
         for (int i = 0; i < getNumberOfExamsTaken(); i++) {
             sum += examScores.get(i);
         }
@@ -70,6 +70,6 @@ public class Student {
         }
 }
 
-g
+
 
 
