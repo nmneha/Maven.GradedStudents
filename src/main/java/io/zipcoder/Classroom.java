@@ -1,8 +1,6 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Classroom {
     private Student[] students;
@@ -32,7 +30,7 @@ public class Classroom {
     }
 
     public void addStudent(Student student) {
-       Arrays.fill(students, student); // for loop student[i] = student
+       Arrays.fill(students, student); // do a for loop instead, error if you try to add more than max
     }
 
     public void removeStudent(String firstName, String lastName) {
@@ -70,7 +68,24 @@ public class Classroom {
 
     }
 
-    public Student[] getGradeBook() {
+    public Map<String, Student> getGradeBook() {
+        HashMap<String, Student> gradebook = new HashMap<>();
+        for (int i = 0; i < students.length; i++) {
+            double percentile = students[i].getAverageExamScore()/getAverageExamScores();
+            if(percentile > .9) {
+                gradebook.put("A", students[i]);
+            } else if(percentile > .71 && percentile < .9) {
+                gradebook.put("B", students[i]);
+            } else if(percentile > .50 && percentile < .71) {
+                gradebook.put("C", students[i]);
+            } else if(percentile > .11 && percentile < .50) {
+                gradebook.put("D", students[i]);
+            } else if(percentile < .11) {
+                gradebook.put("F", students[i]);
+            }
+        }
+
+        return gradebook;
 
     }
 
