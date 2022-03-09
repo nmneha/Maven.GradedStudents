@@ -30,19 +30,19 @@ public class Classroom {
     }
 
     public void addStudent(Student student) {
-        Student[] students = new Student[];
+
 
     }
 
     public void removeStudent(String firstName, String lastName) {
-        for (int i = 0; i < students.length; i ++) {
+        for (int i = 0; i < students.length; i++) {
             if (students[i].getFirstName() == firstName && students[i].getLastName() == lastName) {
                 students[i] = null;
             }
         }
         for (int i = 0; i < students.length; i++) {
             if (students[i] == null) {
-                students[i] = students[i+1];
+                students[i] = students[i + 1];
                 students[i + 1] = null;
             }
         }
@@ -50,44 +50,60 @@ public class Classroom {
 
     public Student[] getStudentsByScore() {
         Student temp;
-        for (int i = 0; i < students.length-1; i++) {
+        for (int i = 0; i < students.length - 1; i++) {
             if (students[i + 1].getAverageExamScore() > students[i].getAverageExamScore()) {
-                temp = students[i+1];
-                students[i] = students[i+1];
-                students [i+1] = temp;
+                temp = students[i + 1];
+                students[i] = students[i + 1];
+                students[i + 1] = temp;
             }
         }
 
-        for (int i = 0; i < students.length-1; i++) {
-            if (students[i].getAverageExamScore() == students[i+1].getAverageExamScore()) {
-              String firstName1 = students[i].getFirstName();
-               String firstName2 = students[i+1].getFirstName();
-               if(firstName1.charAt(i) < firstName2.charAt(i)) {
-                   temp = students[i+1];
-                   students[i] = students[i+1];
-                   students [i+1] = temp;
-               }
+        for (int i = 0; i < students.length - 1; i++) {
+            String firstName1 = students[i].getFirstName();
+            String firstName2 = students[i + 1].getFirstName();
+            String lastName1 = students[i].getLastName();
+            String lastName2 = students[i + 1].getLastName();
+            if (students[i].getAverageExamScore() == students[i + 1].getAverageExamScore()) {
+                if (firstName1.charAt(0) < firstName2.charAt(0)) {
+                    temp = students[i + 1];
+                    students[i] = students[i + 1];
+                    students[i + 1] = temp;
+                } else if (firstName1.charAt(0) == firstName2.charAt(0)) {
+                    if (lastName1.charAt(0) < lastName2.charAt(0)) {
+                        temp = students[i + 1];
+                        students[i] = students[i + 1];
+                        students[i + 1] = temp;
+                    } else if (lastName1.charAt(0) == lastName2.charAt(0)) {
+                    }
+                }
+
             }
+            return students;
+
         }
-
-
-        return students;
-
     }
+    //public Student[] getStudentByScore() {
+    //List <Student> studentSortedList = Arrays.asList(students);
+    //Comparator<Student> comparator =
+    //      Comparator.comparingDouble((Student s) -> -s.getAverageExamScore())
+    //                  .thenComparing(s -> s.getLastName())
+    //                  .thenComparing(s -> s.getFirstName());
+    //Collections.sort(studentSortedList, comparator);
+    //return studentSortedList.toArray(new Student[students.length]);
 
     public Map<String, Student> getGradeBook() {
         HashMap<String, Student> gradebook = new HashMap<>();
         for (int i = 0; i < students.length; i++) {
-            double percentile = students[i].getAverageExamScore()/getAverageExamScores();
-            if(percentile > .9) {
+            double percentile = students[i].getAverageExamScore() / getAverageExamScores();
+            if (percentile > .9) {
                 gradebook.put("A", students[i]);
-            } else if(percentile > .71 && percentile < .9) {
+            } else if (percentile > .71 && percentile < .9) {
                 gradebook.put("B", students[i]);
-            } else if(percentile > .50 && percentile < .71) {
+            } else if (percentile > .50 && percentile < .71) {
                 gradebook.put("C", students[i]);
-            } else if(percentile > .11 && percentile < .50) {
+            } else if (percentile > .11 && percentile < .50) {
                 gradebook.put("D", students[i]);
-            } else if(percentile < .11) {
+            } else if (percentile < .11) {
                 gradebook.put("F", students[i]);
             }
         }
@@ -95,8 +111,5 @@ public class Classroom {
         return gradebook;
 
     }
-
-
-
 
 }
