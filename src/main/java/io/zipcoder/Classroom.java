@@ -30,7 +30,8 @@ public class Classroom {
     }
 
     public void addStudent(Student student) {
-       Arrays.fill(students, student); // do a for loop instead, error if you try to add more than max
+        Student[] students = new Student[];
+
     }
 
     public void removeStudent(String firstName, String lastName) {
@@ -42,14 +43,18 @@ public class Classroom {
         for (int i = 0; i < students.length; i++) {
             if (students[i] == null) {
                 students[i] = students[i+1];
+                students[i + 1] = null;
             }
         }
     }
 
     public Student[] getStudentsByScore() {
+        Student temp;
         for (int i = 0; i < students.length-1; i++) {
             if (students[i + 1].getAverageExamScore() > students[i].getAverageExamScore()) {
+                temp = students[i+1];
                 students[i] = students[i+1];
+                students [i+1] = temp;
             }
         }
 
@@ -58,7 +63,9 @@ public class Classroom {
               String firstName1 = students[i].getFirstName();
                String firstName2 = students[i+1].getFirstName();
                if(firstName1.charAt(i) < firstName2.charAt(i)) {
+                   temp = students[i+1];
                    students[i] = students[i+1];
+                   students [i+1] = temp;
                }
             }
         }
