@@ -15,6 +15,11 @@ public class Student {
         this.examScores = new ArrayList<>(Arrays.asList(examScores));
     }
 
+    public Student() {
+        this.firstName = "First Name";
+        this.lastName = "Last Name";
+    }
+
 
     public String getLastName() {
         return lastName;
