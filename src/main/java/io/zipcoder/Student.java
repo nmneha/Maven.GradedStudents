@@ -68,9 +68,8 @@ public class Student {
     }
 
     public String toString() {
-        String student = "Student Name: " + getFirstName() + getLastName() + "\n" +
-                    "Average score: " + getAverageExamScore() + "\n" +
-                    "Exam Scores:" +  getExamScores();
+        String student = "Student Name: " + getFirstName() + " " + getLastName() + "\n" +
+                    "Average score: " + getAverageExamScore() + "\n" + getExamScores();
             return student;
         }
 

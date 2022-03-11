@@ -285,4 +285,42 @@ public class StudentTest {
         Assert.assertFalse(expected == actual);
     }
 
+    @Test
+    public void toStringTest() {
+        String firstName = "Kaneki";
+        String lastName = "Ken";
+        Double[] examScoreArr = {45.0, 50.0, 66.0, 74.0};
+        Student student = new Student(firstName, lastName, examScoreArr);
+
+        String actual = student.toString();
+        String expected = "Student Name: " + "Kaneki" + " " + "Ken" + "\n" +
+                "Average score: " + 58.75 + "\n" +
+                "Exam Scores: \n" +
+                "Exam 1 -> 45.0\n" +
+                "Exam 2 -> 50.0\n" +
+                "Exam 3 -> 66.0\n" +
+                "Exam 4 -> 74.0\n";
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void toStringFalse() {
+        String firstName = "Kaneki";
+        String lastName = "Ken";
+        Double[] examScoreArr = {45.0, 50.0, 66.0, 74.0};
+        Student student = new Student(firstName, lastName, examScoreArr);
+
+        String actual = student.toString();
+        String expected = "Student Name: " + "Kaneki" + " " + "Ken" + "\n" +
+                "Average score: " + 58 + "\n" +
+                "Exam Scores: \n" +
+                "Exam 1 -> 45.0\n" +
+                "Exam 2 -> 50.0\n" +
+                "Exam 3 -> 66.0\n" +
+                "Exam 4 -> 74.0\n";
+
+        Assert.assertFalse(expected == actual);
+    }
+
 }
