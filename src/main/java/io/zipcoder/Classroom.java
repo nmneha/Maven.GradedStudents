@@ -3,6 +3,7 @@ package io.zipcoder;
 import java.util.*;
 
 public class Classroom {
+    public int maxNumberOfStudents;
     private Student[] students;
 
     public Classroom(int maxNumberOfStudents) {
@@ -85,16 +86,15 @@ public class Classroom {
         }
         return students;
     }
-    // public Student[] getStudentsByScore(){
-    //        List <Student> studentSortedList = new ArrayList<>(Arrays.asList(classroom));
-    //        studentSortedList.removeAll(Collections.singleton(null));
-    //        Comparator<Student> comparator =
-    //                Comparator.comparingDouble((Student s) -> -s.getAverageExamScore() )
-    //                        .thenComparing(s -> s.getLastName())
-    //                        .thenComparing(s -> s.getFirstName());
-    //        Collections.sort(studentSortedList,comparator);
-    //        return studentSortedList.toArray(new Student[studentSortedList.size()]);
-    //    }
+    //public Student[] getStudentByScore() {
+    //List <Student> studentSortedList = Arrays.asList(students);
+    //Comparator<Student> comparator =
+    //      Comparator.comparingDouble((Student s) -> -s.getAverageExamScore())
+    //                  .thenComparing(s -> s.getLastName())
+    //                  .thenComparing(s -> s.getFirstName());
+    //Collections.sort(studentSortedList, comparator);
+    //return studentSortedList.toArray(new Student[students.length]);
+    //change code, does not work with null
 
     public Map<Student, String> getGradeBook() {
         Double percentile;
@@ -109,7 +109,7 @@ public class Classroom {
                 gradebook.put(sortedClass[i], "B");
             } else if (percentile >= .50 && percentile < .71) {
                 gradebook.put(sortedClass[i], "C");
-            } else if (percentile >= .11 && percentile < .50) {
+            } else if (percentile > .11 && percentile < .50) {
                 gradebook.put(sortedClass[i], "D");
             } else if (percentile < .11) {
                 gradebook.put(sortedClass[i], "F");
