@@ -40,10 +40,10 @@ public class Student {
         String scores = "";
         int examNum = 1;
         for (int i = 0; i < getNumberOfExamsTaken(); i++) {
-            scores += "Exam " + examNum + " ->" + examScores.get(i) + "\n";
+            scores += "Exam " + examNum + " -> " + examScores.get(i) + "\n";
             examNum++;
         }
-        return scores;
+        return "Exam Scores: \n" +scores;
     }
 
     public void addExamScore(double examScore) {
@@ -68,6 +68,7 @@ public class Student {
                     "Exam Scores:" +  getExamScores();
             return student;
         }
+
 }
 
 

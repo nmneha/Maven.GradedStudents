@@ -85,15 +85,16 @@ public class Classroom {
         }
         return students;
     }
-    //public Student[] getStudentByScore() {
-    //List <Student> studentSortedList = Arrays.asList(students);
-    //Comparator<Student> comparator =
-    //      Comparator.comparingDouble((Student s) -> -s.getAverageExamScore())
-    //                  .thenComparing(s -> s.getLastName())
-    //                  .thenComparing(s -> s.getFirstName());
-    //Collections.sort(studentSortedList, comparator);
-    //return studentSortedList.toArray(new Student[students.length]);
-    //change code, does not work with null
+    // public Student[] getStudentsByScore(){
+    //        List <Student> studentSortedList = new ArrayList<>(Arrays.asList(classroom));
+    //        studentSortedList.removeAll(Collections.singleton(null));
+    //        Comparator<Student> comparator =
+    //                Comparator.comparingDouble((Student s) -> -s.getAverageExamScore() )
+    //                        .thenComparing(s -> s.getLastName())
+    //                        .thenComparing(s -> s.getFirstName());
+    //        Collections.sort(studentSortedList,comparator);
+    //        return studentSortedList.toArray(new Student[studentSortedList.size()]);
+    //    }
 
     public Map<Student, String> getGradeBook() {
         Double percentile;
