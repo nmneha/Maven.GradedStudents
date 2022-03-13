@@ -25,7 +25,7 @@ public class ClassroomTest {
         Classroom classroom = new Classroom(20);
         int size = classroom.getStudents().length;
 
-        Assert.assertFalse(30 == size);
+        Assert.assertNotEquals(30, size);
 
     }
 
@@ -48,6 +48,11 @@ public class ClassroomTest {
         double actual = classroom.getAverageExamScores();
 
         Assert.assertEquals(expected, actual, 0);
+
+    }
+
+    @Test
+    public void addStudentsTest() {
 
     }
 
