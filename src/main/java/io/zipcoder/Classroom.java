@@ -3,19 +3,17 @@ package io.zipcoder;
 import java.util.*;
 
 public class Classroom {
-    public int maxNumberOfStudents;
     private Student[] students;
 
+    public Classroom() {
+        this(30);
+    }
     public Classroom(int maxNumberOfStudents) {
         students = new Student[maxNumberOfStudents];
     }
 
-    public Classroom(Student[] student) {
-        students = student;
-    }
-
-    public Classroom() {
-        this(30);
+    public Classroom(Student[] studentList) {
+        students = studentList;
     }
 
     public Student[] getStudents() {
@@ -41,7 +39,8 @@ public class Classroom {
 
     public void removeStudent(String firstName, String lastName) {
         for (int i = 0; i < students.length; i++) {
-            if (students[i].getFirstName() == firstName && students[i].getLastName() == lastName) {
+            if (students[i].getFirstName() == firstName
+                    && students[i].getLastName() == lastName) {
                 students[i] = null;
             }
         }
