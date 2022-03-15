@@ -105,9 +105,6 @@ public class ClassroomTest {
 
     @Test
     public void removeStudent() {
-            Student eren = new Student("Eren", "Yeager", new Double[] {50.0, 50.0, 50.0, 50.0});
-            Student levi = new Student("Levi", "Ackerman", new Double[] {100.0, 100.0, 100.0, 100.0});
-            Student[] students = new Student[] {eren, levi};
             Classroom classroom = new Classroom(students);
             classroom.removeStudent("Levi", "Ackerman");
             Student[] expected = new Student[] {eren, null};
@@ -119,16 +116,19 @@ public class ClassroomTest {
 
     @Test
     public void removeStudentNegative() {
-        Student eren = new Student("Eren", "Yeager", new Double[] {50.0, 50.0, 50.0, 50.0});
-        Student levi = new Student("Levi", "Ackerman", new Double[] {100.0, 100.0, 100.0, 100.0});
-        Student[] students = new Student[] {eren, levi};
-        Classroom classroom = new Classroom(students);
-        classroom.removeStudent("Levi", "Ackerman");
-        Student[] expected = new Student[] {eren};
+            Classroom classroom = new Classroom(students);
+            classroom.removeStudent("Levi", "Ackerman");
+            Student[] expected = new Student[] {eren, levi};
 
-        Student[] actual = classroom.getStudents();
+            Student[] actual = classroom.getStudents();
 
-        Assert.assertFalse(expected.equals(actual));
+            Assert.assertFalse(expected.equals(actual));
+    }
+
+
+    @Test
+    public void getStudentScore() {
+
     }
 
 

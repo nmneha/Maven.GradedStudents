@@ -68,7 +68,7 @@ public class Classroom {
             String firstName2 = students[i + 1].getFirstName();
             String lastName1 = students[i].getLastName();
             String lastName2 = students[i + 1].getLastName();
-            if (students[i].getAverageExamScore() == students[i + 1].getAverageExamScore()) {
+            if (Objects.equals(students[i].getAverageExamScore(), students[i + 1].getAverageExamScore())) {
                 if (firstName1.charAt(0) < firstName2.charAt(0)) {
                     temp = students[i + 1];
                     students[i] = students[i + 1];
