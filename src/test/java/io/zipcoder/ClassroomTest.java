@@ -3,8 +3,8 @@ package io.zipcoder;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClassroomTest {
     Student eren = new Student("Eren", "Yeager", new Double[] {50.0, 50.0, 50.0, 50.0});
@@ -127,10 +127,47 @@ public class ClassroomTest {
 
 
     @Test
-    public void getStudentScore() {
+    public void getStudentScoreTest() {
+            Classroom classroom = new Classroom(students);
+            Student[] expected = new Student[] {levi, eren};
 
+            Student[] actual = classroom.getStudentsByScore();
+
+            Assert.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void getStudentScoreNegative() {
+            Classroom classroom = new Classroom(students);
+            Student[] expected = new Student[] {eren, levi};
 
+            Student[] actual = classroom.getStudentsByScore();
+
+            Assert.assertFalse(expected.equals(actual));
+    }
+
+    @Test
+    public void getGradeBookTest() {
+            Classroom classroom = new Classroom(students);
+            Map<Student, String> expected = new HashMap<>();
+            expected.put(eren, "C");
+            expected.put(levi, "A");
+
+            Map<Student, String> actual = classroom.getGradeBook();
+
+            Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getGradeBookNegative() {
+        Classroom classroom = new Classroom(students);
+        Map<Student, String> expected = new HashMap<>();
+        expected.put(eren, "A");
+        expected.put(levi, "A");
+
+        Map<Student, String> actual = classroom.getGradeBook();
+
+        Assert.assertNotEquals(expected, actual);
+    }
 
     }

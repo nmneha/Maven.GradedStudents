@@ -56,26 +56,23 @@ public class Classroom {
     public Student[] getStudentsByScore() {
         Student temp;
         for (int i = 0; i < students.length - 1; i++) {
-            if (students[i + 1].getAverageExamScore() > students[i].getAverageExamScore()) {
-                temp = students[i + 1];
+            if (students[i].getAverageExamScore() < students[i+1].getAverageExamScore()) {
+                temp = students[i];
                 students[i] = students[i + 1];
                 students[i + 1] = temp;
             }
-        }
-
-        for (int i = 0; i < students.length - 1; i++) {
             String firstName1 = students[i].getFirstName();
             String firstName2 = students[i + 1].getFirstName();
             String lastName1 = students[i].getLastName();
             String lastName2 = students[i + 1].getLastName();
             if (Objects.equals(students[i].getAverageExamScore(), students[i + 1].getAverageExamScore())) {
-                if (firstName1.charAt(0) < firstName2.charAt(0)) {
-                    temp = students[i + 1];
+                if (firstName1.charAt(0) > firstName2.charAt(0)) {
+                    temp = students[i];
                     students[i] = students[i + 1];
                     students[i + 1] = temp;
                 } else if (firstName1.charAt(0) == firstName2.charAt(0)) {
-                    if (lastName1.charAt(0) < lastName2.charAt(0)) {
-                        temp = students[i + 1];
+                    if (lastName1.charAt(0) > lastName2.charAt(0)) {
+                        temp = students[i];
                         students[i] = students[i + 1];
                         students[i + 1] = temp;
                     } else if (lastName1.charAt(0) == lastName2.charAt(0)) {
@@ -115,7 +112,6 @@ public class Classroom {
                 gradebook.put(sortedClass[i], "F");
             }
         }
-
         return gradebook;
 
     }
