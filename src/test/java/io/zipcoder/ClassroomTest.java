@@ -7,56 +7,130 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ClassroomTest {
-    Student eren = new Student("Eren", "Yaeger", new Double[] {50.0, 50.0, 50.0, 50.0});
+    Student eren = new Student("Eren", "Yeager", new Double[] {50.0, 50.0, 50.0, 50.0});
     Student levi = new Student("Levi", "Ackerman", new Double[] {100.0, 100.0, 100.0, 100.0});
     Student[] students = new Student[] {eren, levi};
 
-    @Test
-    public void constructorTest() {
-        Classroom classroom = new Classroom();
-        int size = classroom.getStudents().length;
+        @Test
+        public void constructorTest() {
+            Classroom classroom = new Classroom();
+            int size = classroom.getStudents().length;
 
-        Assert.assertEquals(30, size);
+            Assert.assertEquals(30, size);
 
     }
 
     @Test
     public void constructorNegativeTest() {
-        Classroom classroom = new Classroom(20);
-        int size = classroom.getStudents().length;
+            Classroom classroom = new Classroom(20);
+            int size = classroom.getStudents().length;
 
-        Assert.assertNotEquals(30, size);
+            Assert.assertNotEquals(30, size);
 
     }
 
     @Test
     public void getStudentsTest() {
-        Classroom classroom = new Classroom(students);
-        Student[] expected = students;
+            Classroom classroom = new Classroom(students);
+            Student[] expected = students;
 
-        Student[] actual = classroom.getStudents();
+            Student[] actual = classroom.getStudents();
 
-        Assert.assertArrayEquals(expected, actual);
+            Assert.assertArrayEquals(expected, actual);
 
+    }
+
+    @Test
+    public void getStudentsNegative() {
+            Classroom classroom = new Classroom(students);
+            Student[] expected = new Student[] {eren};
+
+            Student[] actual = classroom.getStudents();
+
+            Assert.assertFalse(expected.equals(actual));
     }
 
     @Test
     public void getAverageExamScoresTest() {
-         Classroom classroom = new Classroom(students);
-        double expected = 75.0;
+            Classroom classroom = new Classroom(students);
+            double expected = 75.0;
 
-        double actual = classroom.getAverageExamScores();
+            double actual = classroom.getAverageExamScores();
 
-        Assert.assertEquals(expected, actual, 0);
+            Assert.assertEquals(expected, actual, 0);
 
     }
 
     @Test
-    public void addStudentsTest() {
+    public void getAverageExamScoresNegative() {
+            Classroom classroom = new Classroom(students);
+            double expected = 50.0;
 
+            double actual = classroom.getAverageExamScores();
+
+            Assert.assertNotEquals(expected, actual, 0);
     }
 
 
 
+    @Test
+     public void addStudentsTest() {
+            //Given
+            Student[] students =  new Student[1];
+            Classroom classroom = new Classroom(students);
+            Student[] expected =  new Student[] {eren};
+            //When
+            classroom.addStudent(eren);
 
-}
+            Student[] actual = classroom.getStudents();
+
+            Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void addStudentsNegative() {
+            //Given
+            Student mikasa = new Student("Mikasa", "Ackerman", new Double[] {98.0, 100.0, 100.0, 99.0});
+            Classroom classroom = new Classroom(students);
+            //Student[] expected =  new Student[] {eren, levi, mikasa};
+            Student[] expected = new Student[]{eren, levi};
+            //When
+            classroom.addStudent(mikasa);
+
+            Student[] actual = classroom.getStudents();
+
+            Assert.assertFalse(expected.equals(actual));
+
+    }
+
+    @Test
+    public void removeStudent() {
+            Student eren = new Student("Eren", "Yeager", new Double[] {50.0, 50.0, 50.0, 50.0});
+            Student levi = new Student("Levi", "Ackerman", new Double[] {100.0, 100.0, 100.0, 100.0});
+            Student[] students = new Student[] {eren, levi};
+            Classroom classroom = new Classroom(students);
+            classroom.removeStudent("Levi", "Ackerman");
+            Student[] expected = new Student[] {eren, null};
+
+            Student[] actual = classroom.getStudents();
+
+            Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void removeStudentNegative() {
+        Student eren = new Student("Eren", "Yeager", new Double[] {50.0, 50.0, 50.0, 50.0});
+        Student levi = new Student("Levi", "Ackerman", new Double[] {100.0, 100.0, 100.0, 100.0});
+        Student[] students = new Student[] {eren, levi};
+        Classroom classroom = new Classroom(students);
+        classroom.removeStudent("Levi", "Ackerman");
+        Student[] expected = new Student[] {eren};
+
+        Student[] actual = classroom.getStudents();
+
+        Assert.assertFalse(expected.equals(actual));
+    }
+
+
+
+    }

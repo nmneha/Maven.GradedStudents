@@ -17,6 +17,7 @@ public class Classroom {
     }
 
     public Student[] getStudents() {
+        System.out.println(students);
         return students;
     }
 
@@ -44,7 +45,7 @@ public class Classroom {
                 students[i] = null;
             }
         }
-        for (int i = 0; i < students.length; i++) {
+        for (int i = 0; i < students.length-1; i++) {
             if (students[i] == null) {
                 students[i] = students[i + 1];
                 students[i + 1] = null;
